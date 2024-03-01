@@ -53,21 +53,35 @@ def bisection_method_np(f, a, b, tol=0.0001):
 
 
 # Rodando a função no intervalo [4, 11] e com tolerância de 0.0001
-raiz = bisection_method_np(f, 4, 11, 0.000_1)
-print(f"A raiz da função no intervalo [4, 11] é aproximadamente {raiz:.10f}")
+a = 4
+b = 11
+tol = 0.000_1
+# raiz = bisection_method_np(f, a, b, tol)
+# lista de raizes
+raizes = []
+for i in range(a, b):
+    try:
+        raiz = bisection_method_np(f, i, i + 1, tol)
+        raizes.append(raiz)
+    except Exception:
+        pass
+    
+# printar a lista de raizes
+print(f"O intervalo entre [{a}{b}] tem as seguintes raizes: {raizes}")
 
 
 # Plotando o gráfico com o seaborn
-x = np.linspace(4, 11, 100)
+x = np.linspace(a, b, 1_000)
 y = f(x)
+
 
 # Configuração do gráfico com seaborn
 sns.set_theme()
 plt.figure(figsize=(10, 6))
 sns.lineplot(x=x, y=y, label="f(x) = log(x) + 3sin(x/2)")
 plt.scatter(
-    raiz,
-    f(np.array(raiz)),
+    raizes,  # Certifique-se de que 'raizes' é uma lista de raízes
+    f(np.array(raizes)),  # Aplica a função a todas as raízes
     color="red",
     label="Raízes aproximadas",
 )
