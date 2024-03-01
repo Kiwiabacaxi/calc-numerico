@@ -65,10 +65,9 @@ for i in range(a, b):
         raizes.append(raiz)
     except Exception:
         pass
-    
-# printar a lista de raizes
-print(f"O intervalo entre [{a}{b}] tem as seguintes raizes: {raizes}")
 
+# printar a lista de raizes
+print(f"O intervalo entre [{a},{b}] tem as seguintes raizes: {raizes}")
 
 # Plotando o gráfico com o seaborn
 x = np.linspace(a, b, 1_000)
