@@ -14,13 +14,14 @@ quais ocorre mudança de sinal dentro do intervalo
 [4,11] para a função abaixo. Envie o trabalho para o
 e-mail josericardo@iftm.edu.br.
 
-Trabalho 1 = 100 * subintervalos # erro maximo tolerado
+Trabalho 1 = 100 (subintervalos) # erro maximo tolerado
 Trabalho 2 = 0,0001 # erro maximo tolerado
 Trabalho 3 = 0,0001 # erro maximo tolerado
 
 f(x) = log(x) + 3sin(x/2)
 """
 
+# Imports
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
