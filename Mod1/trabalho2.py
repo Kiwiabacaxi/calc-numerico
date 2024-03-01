@@ -32,23 +32,24 @@ def f(x):
 def bisection_method_np(f, a, b, tol=0.0001):
     # checar se a e b são raízes
     if np.sign(f(a)) == np.sign(f(b)):
+        # Se o sinal de f(a) for igual ao sinal de f(b), lançar uma exceção
         raise Exception("Os valores de a e b não são raízes")
 
     # Pegar o valor do meio do intervalo/ achar o ponto médio
-    m = (a + b) / 2
+    c = (a + b) / 2
 
     # Fazer as verificações
-    if np.abs(f(m)) < tol:
+    if np.abs(f(c)) < tol:
         # Se a diferença entre a e b for menor que a tolerância, retornar m (raiz)
-        return m
+        return c
 
-    elif np.sign(f(a)) == np.sign(f(m)):
+    elif np.sign(f(a)) == np.sign(f(c)):
         # Se o sinal de f(a) for igual ao sinal de f(m), chamar a função recursivamente
-        return bisection_method_np(f, m, b, tol)
+        return bisection_method_np(f, c, b, tol)
 
-    elif np.sign(f(b)) == np.sign(f(m)):
+    elif np.sign(f(b)) == np.sign(f(c)):
         # Se o sinal de f(b) for igual ao sinal de f(m), chamar a função recursivamente
-        return bisection_method_np(f, a, m, tol)
+        return bisection_method_np(f, a, c, tol)
 
 
 # Rodando a função no intervalo [4, 11] e com tolerância de 0.0001
