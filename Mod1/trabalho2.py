@@ -53,7 +53,7 @@ def bisection_method_np(f, a, b, tol=0.0001):
 
 # Rodando a função no intervalo [4, 11] e com tolerância de 0.0001
 raiz = bisection_method_np(f, 4, 11, 0.000_1)
-print(f"A raiz da função no intervalo [4, 11] é aproximadamente {raiz:.4f}")
+print(f"A raiz da função no intervalo [4, 11] é aproximadamente {raiz:.10f}")
 
 
 # Plotando o gráfico com o seaborn
