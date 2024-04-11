@@ -34,22 +34,31 @@ a1, a0 = np.polyfit(x, y, 1)
 # Coeficiente de determinação
 r2 = np.corrcoef(x, y)[0, 1] ** 2
 
+
+# Funçao para regressão linear
+def linear_regression(x: np.ndarray, a0: float, a1: float) -> np.ndarray:
+    return a0 + a1 * x
+
+
 # Plot - Gráfico de dispersão A)
-sns.set_theme('notebook')
-plt.scatter(x, y, color='blue', label='Dados')
-plt.plot(x, a0 + a1 * x, color='red', label='Regressão linear')
+sns.set_theme("notebook")
+plt.figure(figsize=(15, 7))
+plt.tight_layout()
+plt.scatter(x, y, color="blue")
+plt.plot(x, linear_regression(x, a0, a1), color="red")
+plt.title("Regressão Linear")
 
 # Adiciona linhas do ponto até a reta
 for xi, yi in zip(x, y):
-    plt.plot([xi, xi], [yi, a0 + a1 * xi], color='green')
+    plt.plot([xi, xi], [yi, a0 + a1 * xi], color="green")
 
-plt.title('Regressão por mínimos quadrados')
-plt.xlabel('x')
-plt.ylabel('y')
+plt.title("Regressão por mínimos quadrados")
+plt.xlabel("x")
+plt.ylabel("y")
 plt.legend()
 plt.show()
 
 # Resultados B) e C)
-print(f'Coeficiente a0: {a0}')
-print(f'Coeficiente a1: {a1}')
-print(f'Coeficiente r2: {r2}')
+print(f"Coeficiente a0: {a0}")
+print(f"Coeficiente a1: {a1}")
+print(f"Coeficiente r2: {r2}")
