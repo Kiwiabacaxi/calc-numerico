@@ -21,7 +21,7 @@ import numpy as np
 
 # Define o sistema de equações
 A = np.array([[6, 2, 1, -1], [-2, 7, -1, 1], [-1, 1, 8, 1], [2, 2, 1, 9]])
-B = np.array([2, 1 / 2, 2, 1])
+y = np.array([2, 1 / 2, 2, 1])
 
 
 def gauss_jacobi(
@@ -58,6 +58,6 @@ def gauss_jacobi(
 
 
 # Encontra a solução do sistema
-x, num_iterations = gauss_jacobi(A, B, np.array([0, 0, 0, 0]), 0.02)
+x, num_iterations = gauss_jacobi(A, y, np.array([0, 0, 0, 0]), 0.02)
 
 print(f"A solução do sistema é {x} encontrada em {num_iterations} iterações.")
