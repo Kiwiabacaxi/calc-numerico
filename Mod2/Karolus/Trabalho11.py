@@ -46,12 +46,17 @@ def saturacao(x: np.ndarray, y: np.ndarray) -> np.ndarray:
     return np.polyfit(x, 1 / y, 1)
 
 # Plotar gráficos
+sns.set_theme('notebook')
+# sns.set_style("darkgrid", {"grid.color": ".6", "grid.linestyle": ":"})
 plt.figure(figsize=(14, 8))
 
 # Gráfico de regressão linear
 plt.subplot(2, 2, 1)
 plt.scatter(x, y, color='blue')
 plt.plot(x, linear_regression(x, a0, a1), color='red')
+# Adiciona linhas do ponto até a reta
+for xi, yi in zip(x, y):
+    plt.plot([xi, xi], [yi, a0 + a1 * xi], color='green')
 plt.title('Regressão Linear')
 
 # Gráfico de transformação exponencial
@@ -59,6 +64,9 @@ plt.subplot(2, 2, 2)
 a1_exp, a0_exp = exponencial(x, y)
 plt.scatter(x, y, color='blue')
 plt.plot(x, np.exp(a0_exp) * np.exp(a1_exp * x), color='red')
+# Adiciona linhas do ponto até a reta
+for xi, yi in zip(x, y):
+    plt.plot([xi, xi], [yi, np.exp(a0_exp) * np.exp(a1_exp * xi)], color='green')
 plt.title('Transformação Exponencial')
 
 # Gráfico de transformação de potência
@@ -66,6 +74,9 @@ plt.subplot(2, 2, 3)
 a1_pow, a0_pow = potencia(x, y)
 plt.scatter(x, y, color='blue')
 plt.plot(x, np.exp(a0_pow) * x ** a1_pow, color='red')
+# Adiciona linhas do ponto até a reta
+for xi, yi in zip(x, y):
+    plt.plot([xi, xi], [yi, np.exp(a0_pow) * xi ** a1_pow], color='green')
 plt.title('Transformação de Potência')
 
 # Gráfico de transformação de saturação
@@ -73,6 +84,9 @@ plt.subplot(2, 2, 4)
 a1_sat, a0_sat = saturacao(x, y)
 plt.scatter(x, y, color='blue')
 plt.plot(x, 1 / (a0_sat + a1_sat * x), color='red')
+# Adiciona linhas do ponto até a reta
+for xi, yi in zip(x, y):
+    plt.plot([xi, xi], [yi, 1 / (a0_sat + a1_sat * xi)], color='green')
 plt.title('Transformação de Saturação')
 
 plt.tight_layout()
