@@ -68,3 +68,7 @@ epsilon = 0.02
 # Resolvendo o sistema com o método de Gauss-Seidel
 x, num_iterations = gauss_seidel(A, y, x0, epsilon)
 print(f"A solução do sistema é {x} encontrada em {num_iterations} iterações.")
+
+# usando linalg
+# x = np.linalg.solve(A, y)
+# print(f"A solução do sistema é {x}.")
