@@ -61,4 +61,3 @@ def gauss_jacobi(
 x, num_iterations = gauss_jacobi(A, B, np.array([0, 0, 0, 0]), 0.02)
 
 print(f"A solução do sistema é {x} encontrada em {num_iterations} iterações.")
-
