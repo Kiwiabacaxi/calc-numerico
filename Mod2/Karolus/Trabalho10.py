@@ -44,18 +44,22 @@ def linear_regression(x: np.ndarray, a0: float, a1: float) -> np.ndarray:
 sns.set_theme("notebook")
 plt.figure(figsize=(15, 7))
 plt.tight_layout()
-plt.scatter(x, y, color="blue")
-plt.plot(x, linear_regression(x, a0, a1), color="red")
-plt.title("Regressão Linear")
+plt.scatter(x, y, color="blue", label="Dados")
+plt.plot(x, linear_regression(x, a0, a1), color="red", label="Regressão linear")
 
 # Adiciona linhas do ponto até a reta
 for xi, yi in zip(x, y):
-    plt.plot([xi, xi], [yi, a0 + a1 * xi], color="green")
+    plt.plot([xi, xi], [yi, a0 + a1 * xi], color="green", label="Erro")
+
+# Como as linhas de erro são plotadas em um loop, isso irá criar várias entradas na legenda.
+# Então, criamos uma legenda personalizada para evitar entradas duplicadas.
+handles, labels = plt.gca().get_legend_handles_labels()
+by_label = dict(zip(labels, handles))
+plt.legend(by_label.values(), by_label.keys())
 
 plt.title("Regressão por mínimos quadrados")
 plt.xlabel("x")
 plt.ylabel("y")
-plt.legend()
 plt.show()
 
 # Resultados B) e C)
