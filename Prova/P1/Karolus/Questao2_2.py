@@ -14,25 +14,28 @@ Considere que a primeira iteraçao é aquela que contém a aproximaçao inicial 
 me de uma tabela formatadinha que tenha as iteraçoes e a raiz estimada
 lembrando que a primeira iteraçao é 0.1111111111111111 e a raiz é 1.9723810010822, entao so tem que descobrir a iteraçao 2, 3 e 4
 """
-
 import numpy as np
-import pprint
 
-# Definindo a função f(x)
+# Definindo a função fornecida
 def f(x):
     return 2 * np.sin(np.sqrt(x)) - x
 
-# Definindo g(x) a partir de f(x) = 0 -> g(x) = x = 2*sin(sqrt(x))
+# Definindo a função de iteração para o método de ponto fixo
+# Usaremos a função g(x) = 2 * sin(sqrt(x))
 def g(x):
     return 2 * np.sin(np.sqrt(x))
 
-# Aproximação inicial
+# Valor inicial
 x0 = 0.1111111111111111
-results = [(0, x0)]  # Lista para armazenar os resultados de cada iteração
 
-# Realizar as iterações
-for i in range(1, 6):  # 5 iterações desejadas
-    x0 = g(x0)  # Nova aproximação
-    results.append((i, x0))
+# Realizando as iterações
+iterations = [x0]
+for _ in range(4):  # Inclui o x0 como iteração 0 e executa mais 4 iterações
+    next_x = g(iterations[-1])
+    iterations.append(next_x)
 
-pprint.pprint(results)  # Exibir resultados
+# Formatando a tabela de saída
+table = "Iteração | Raiz Estimada\n" + "-"*27 + "\n"
+table += "\n".join(f"{i}         | {iterations[i]:.6f}" for i in range(5))
+
+print(table)

@@ -38,5 +38,3 @@ while i < 5:
 # print("Raíz g1 encontrada:", v1[i-1])
 
 print("Primeira função:\n", v1)
-# print("Segunda função:\n", v2)
-# print("Terceira função:\n", v3)

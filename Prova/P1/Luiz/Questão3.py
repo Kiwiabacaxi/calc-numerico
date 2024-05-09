@@ -1,3 +1,15 @@
+"""
+A trajetória de uma bola pode ser calculada como
+y = (tg(θ))x - (g/(2v²cos²(θ)))x² + y0
+onde y é a altura (m), θ é o ângulo inicial (em radianos)
+v é a velocidade inicial (m/s), g = 9.81 m/s² é a constante gravitacional
+e y0 é a altura inicial (m). Use a busca da razão áurea para determinar a altura máxima
+dados y0 = 1m, v = 25 m/s e θ = 50° rad.
+Considere xl = 0,888888889m e xu = 60,888888889m
+e apresente os resultados das 5 iterações, sendo xl, xu e máximo estimado para cada iteração.
+Use até 6 casas decimais após a vírgula.
+"""
+
 import math
 
 # Definindo a função dada
@@ -22,8 +34,8 @@ def golden_ratio_search(f, xl, xu, iterations):
         print(f"Iteração {i+1}: xl = {xl:.6f}, xu = {xu:.6f}, máximo estimado = {f(xl):.6f}")
 
 # Inicializando os valores dados
-xl = 1.888888
-xu = 61.888888
+xl = 0.666666667
+xu = 60.666666667
 
 # Chamando a função do método da razão áurea com os valores iniciais e a função definida
 golden_ratio_search(f, xl, xu, 5)
