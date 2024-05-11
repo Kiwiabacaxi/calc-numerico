@@ -1,3 +1,20 @@
+"""
+@Antonio Alves
+@Carlos Alexandre Sousa Silva
+@Eder Queiroz
+@Luiz Antonio Folador
+
+Assign:
+Crie um programa que utiliza a razão áurea
+para maximizar a função
+f(x) = -x^4 + 2x^3 - 2x^ + 6
+
+Considerando o intervalo de busca inicial de
+[- 6, 6]. Estabeleça como critério de parada a
+precisão de 10^-8 para o erro estimado.
+"""
+
+
 import numpy as np
 
 phi = ((1 + np.sqrt(5)) / 2)

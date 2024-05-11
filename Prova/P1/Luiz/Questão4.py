@@ -25,19 +25,42 @@ b = np.array([3818, 1200, 2350])
 # Aproximação inicial
 x0 = np.array([0, 0, 0])
 
-# Método de Gauss-Jacobi
-def gauss_jacobi(A, b, x0, n_iter):
-    n = len(A)
-    x = x0.copy()
-    for k in range(n_iter):
-        print(f"Iteração {k}: {x}")
-        x_new = np.zeros_like(x)
-        for i in range(n):
-            s1 = np.dot(A[i, :i], x[:i])
-            s2 = np.dot(A[i, i + 1:], x[i + 1:])
-            x_new[i] = (b[i] - s1 - s2) / A[i, i]
-        x = x_new
-    return x
 
-# Executar o método para as primeiras 3 iterações
-gauss_jacobi(A, b, x0, 3)
+
+def gauss_jacobi(
+    A: np.ndarray, b: np.ndarray, x0: np.ndarray
+) -> tuple:
+    """
+    Resolve um sistema de equações lineares usando o método de Gauss-Jacobi.
+
+    Args:
+        A: Matriz de coeficientes do sistema.
+        b: Vetor de termos independentes.
+        x0: Vetor de aproximação inicial.
+        tolerancia: Tolerância para o critério de parada.
+
+    Returns:
+        Uma tupla contendo:
+            x: Solução aproximada do sistema.
+            iteracoes: Número de iterações realizadas.
+    """
+    # Cria um vetor com os elementos da diagonal de A e subtrai-os de A
+    D = np.diag(A)
+    R = A - np.diagflat(D)
+
+    # Inicializa o contador de iterações
+    iteracoes = 0
+
+    while True:
+        print(f"Iteração {iteracoes}: x = {x0}")
+        x = (b - np.dot(R, x0)) / D
+        if np.allclose(x0, x):
+            return x, iteracoes
+        x0 = x
+        iteracoes += 1
+
+
+# Encontra a solução do sistema
+x, num_iterations = gauss_jacobi(A, b, x0)
+
+print(f"A solução do sistema é {x} encontrada em {num_iterations} iterações.")

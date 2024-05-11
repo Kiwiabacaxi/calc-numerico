@@ -1,3 +1,19 @@
+"""
+@Antonio Alves
+@Carlos Alexandre Sousa Silva
+@Eder Queiroz
+@Luiz Antonio Folador
+
+Assign:
+Crie um programa que utiliza a interpolação
+quadrática para maximizar a função
+f(x) = -x^4 + 2x^3 - 2x^ + 6
+
+considerando os pontos de busca iniciais - 7,
+- 2 e 1. Estabeleça como critério de parada a
+precisão de 10^-8 para o erro estimado.
+"""
+
 import numpy as np
 
 
@@ -36,6 +52,6 @@ def interpolacao_quadratica(f, x1, x2, x3, erro):
 
     return x4
 
-print(interpolacao_quadratica(f, -6, 0, 6, 0.00000001))
+print(interpolacao_quadratica(f, -7, -2, 1, 0.00000001))
 
         
