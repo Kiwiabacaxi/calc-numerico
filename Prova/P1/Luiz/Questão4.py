@@ -1,37 +1,34 @@
-"""
-@Antonio Alves
-@Carlos Alexandre Sousa Silva
-@Eder Queiroz
-@Luiz Antonio Folador
+""" 
+o seguinte sistema de equações é projetado para 
+determinar as concentrações em uma serie de reatores
+acoplados como função da quantidade de entrada de massa em cada reator.
 
-Assign:
-Crie um programa que utiliza o método de Gauss-
-Jacobi para resolver o sistema:
- 6x + 2y + 1z - 1w = 2
--2x + 7y - 1z + 1w = 1/2
--1x + 1y + 8z + 1w = 2
- 2x + 2y + 1z + 9w = 1
+{
+    15c1-3c2-c3 = 3818
+    -3c1+18c2-6c3 = 1200
+    -4c1-c2+12c3 = 2350
+}
 
-Utilize como aproximação inicial a quádrupla
-ordenada (0,0,0,0) e como tolerância ε = 0,02.
+considere a aproximação inicial (0,0,0) e obtenha as 3 primeiras 
+iterações da resolução desse problema pelo metodo da iteração 
+de gauss-jacobi. A primeira iteração é aquela que considera a 
+aproximação inicial.
 
 """
 
 import numpy as np
 
-# Define o sistema de equações
-A = np.array([[6, 2, 1, -1], [-2, 7, -1, 1], [-1, 1, 8, 1], [2, 2, 1, 9]])
-# A = np.array([
-#     [15, -3, -1],
-#     [-3, 18, -6],
-#     [-4, -1, 12]
-# ]) # prova hack
-y = np.array([2, 1 / 2, 2, 1])
-# y = np.array([3818, 1206, 2350]) # prova hacj
+# Sistema de equações
+A = np.array([[15, -3, -1], [-3, 18, -6], [-4, -1, 12]])
+b = np.array([3818, 1200, 2350])
+
+# Aproximação inicial
+x0 = np.array([0, 0, 0])
+
 
 
 def gauss_jacobi(
-    A: np.ndarray, b: np.ndarray, x0: np.ndarray, tolerancia: float
+    A: np.ndarray, b: np.ndarray, x0: np.ndarray
 ) -> tuple:
     """
     Resolve um sistema de equações lineares usando o método de Gauss-Jacobi.
@@ -57,14 +54,13 @@ def gauss_jacobi(
     while True:
         print(f"Iteração {iteracoes}: x = {x0}")
         x = (b - np.dot(R, x0)) / D
-        if np.allclose(x0, x, rtol=tolerancia):
+        if np.allclose(x0, x):
             return x, iteracoes
         x0 = x
         iteracoes += 1
 
 
 # Encontra a solução do sistema
-x, num_iterations = gauss_jacobi(A, y, np.array([0, 0, 0, 0]), 0.02)
-# x, num_iterations = gauss_jacobi(A, y, np.array([0, 0, 0]), 0.02) # prova hack
+x, num_iterations = gauss_jacobi(A, b, x0)
 
 print(f"A solução do sistema é {x} encontrada em {num_iterations} iterações.")
