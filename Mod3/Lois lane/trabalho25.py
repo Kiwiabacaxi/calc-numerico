@@ -1,3 +1,10 @@
+"""
+@Antonio Alves
+@Carlos Alexandre Sousa Silva
+@Eder Queiroz
+@Luiz Antonio Folador
+"""
+
 import numpy as np
 
 # Definindo as funções para as derivadas
